@@ -1,0 +1,30 @@
+body{
+	background-color: #80808040;
+}
+
+.carousel{
+	margin: 70px;
+}
+
+.title{
+	text-align: center;
+	padding: 50px;
+}
+
+#othertext{
+	border-radius: 5px;
+	padding: 8px;
+}
+
+.btn{
+	right: auto;
+}
+
+#footer{
+	margin-top: 50px;
+	margin-bottom: auto;
+}
+
+.img-thumbnail{
+	max-height: 60%;
+}

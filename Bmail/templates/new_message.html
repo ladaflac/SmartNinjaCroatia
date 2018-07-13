@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" description="Bmail new message input">
+    <title>New Message</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body>
+   <!-- prebaciti header u neki template, reusati u oba htmla? -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--<h1 class="logo">Bmail</h1>-->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar">
+                {% if not user %}
+                <a class="nav-item nav-link" href="{{ login_url }}">Login</a>
+                {% else %}
+                <a class="nav-item nav-link" href="{{ logout_url }}">Logout</a>
+                <label>{{ user.email() }}</label>
+                {% endif %}
+            </div>
+          </div>
+        </nav>
+    </header>
+
+   {% if user %}
+   <div class="email">
+       <h3>New message</h3>
+       <br>
+       <!--todo dodati validaciju polja -->
+       <form method="post">
+            <div class="form-group">
+                <label>From</label>
+                <input class="form-control" type="text" name="from" placeholder="{{ user.email() }}" readonly>
+            </div>
+           <div class="form-group">
+                <label>To</label>
+                <input type="email" class="form-control" name="to" placeholder="Recipients">
+            </div>
+            <div class="form-group">
+                <label>Subject</label>
+                <input type="text" class="form-control" name="subject">
+            </div>
+            <div class="form-group">
+                <textarea rows="5" class="form-control" name="message"></textarea>
+            </div>
+            <div>
+                <input type="submit" name="send" class="btn btn-primary" value="Send">
+                <input type="submit" name="draft" class="btn btn-secondary" value="Save as draft">
+                <a href="/" role="button" class="btn btn-secondary">Discard</a>
+            </div>
+        </form>
+   </div>
+    {% else %}
+    <div class="" role="tabpanel" aria-labelledby="v-pills-hello-tab">Please login to access your Bmail!</div>
+    {% endif %}
+</body>
+</html>

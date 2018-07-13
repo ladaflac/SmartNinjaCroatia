@@ -1,0 +1,30 @@
+body{
+  font-family: Verdana, Times, sans-serif;
+  background-color: #3b1ee90d;
+}
+
+span{
+  color: green;
+}
+
+.button{
+  font-weight: bolder;
+}
+
+#header-button{
+  font-size: 10px;
+}
+
+#header {
+  font-size: 13px;
+  text-align: right;
+  background-color: #9e9e9e66;
+  padding: 13px;
+}
+
+#footer{
+  font-size: 12px;
+  text-align: center;
+  background-color: #8080804f;
+  padding: 20px;
+}

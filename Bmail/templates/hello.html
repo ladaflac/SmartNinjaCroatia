@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" description="Bmail">
+    <title>Bmail</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--<h1 class="logo">Bmail</h1>-->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar">
+                {% if not user %}
+                <a class="nav-item nav-link" href="{{ login_url }}">Login</a>
+                {% else %}
+                <a class="nav-item nav-link" href="{{ logout_url }}">Logout</a>
+                <label>{{ user.email() }}</label>
+                {% endif %}
+            </div>
+          </div>
+        </nav>
+    </header>
+
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <h1>Bmail</h1>
+        <br>
+        {% if user %}
+        <form action="/new_message">
+            <input type="submit" value="New message">
+        </form>
+        <br>
+        <a class="nav-link active" id="v-pills-inbox-tab" data-toggle="pill" href="#v-pills-inbox" role="tab" aria-controls="v-pills-inbox" aria-selected="true">Inbox</a>
+        <a class="nav-link" id="v-pills-drafts-tab" data-toggle="pill" href="#v-pills-drafts" role="tab" aria-controls="v-pills-sent" aria-selected="false">Drafts</a>
+        <a class="nav-link" id="v-pills-sent-tab" data-toggle="pill" href="#v-pills-sent" role="tab" aria-controls="v-pills-sent" aria-selected="false">Sent</a>
+        <!--TODO weather-->
+        <a href="/weather">Weather</a>
+        {% endif %}
+    </div>
+    <div class="tab-content" id="v-pills-tabContent">
+        <!--TODO liste mailova-->
+        {% if user %}
+        <div class="tab-pane fade show active" id="v-pills-inbox" role="tabpanel" aria-labelledby="v-pills-inbox-tab">Inbox
+            <!--todo display emails -->
+            <p>{{ emails }}</p>
+            {% for message in emails %}
+            <ul>
+            <li>
+                <label>{{ message.created }}</label>
+            </li>
+            </ul>
+            {% endfor %}
+        </div>
+        <div class="tab-pane fade" id="v-pills-drafts" role="tabpanel" aria-labelledby="v-pills-sent-tab">Drafts</div>
+        <div class="tab-pane fade" id="v-pills-sent" role="tabpanel" aria-labelledby="v-pills-sent-tab">Sent</div>
+        {% else %}
+        <div class="" role="tabpanel" aria-labelledby="v-pills-hello-tab">Please login to access your Bmail!</div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
